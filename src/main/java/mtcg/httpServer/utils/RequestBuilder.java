@@ -1,6 +1,5 @@
 package mtcg.httpServer.utils;
 
-
 import mtcg.httpServer.http.Method;
 import mtcg.httpServer.server.Request;
 
@@ -13,28 +12,25 @@ public class RequestBuilder {
         Request request = new Request();
         String line = bufferedReader.readLine();
 
-        if (line != null) {
+        if(line != null) {
             String[] splitFirstLine = line.split(" ");
 
-            request.setMethod(getMethod(splitFirstLine[0])); //Methode wird Extrahiert aus Anfrage (z.B.: POST)
-            setPathname(request, splitFirstLine[1]);
+            request.setMethod(getMethod(splitFirstLine[0]));
+            request.setUrlContent(splitFirstLine[1]);
 
             line = bufferedReader.readLine();
-            while (!line.isEmpty()) {
+            while(!line.isEmpty()) {
                 request.getHeaderMap().ingest(line);
                 line = bufferedReader.readLine();
             }
 
-            if (request.getHeaderMap().getContentLength() > 0) {
+            if(request.getHeaderMap().getContentLength() > 0) {
                 char[] charBuffer = new char[request.getHeaderMap().getContentLength()];
                 bufferedReader.read(charBuffer, 0, request.getHeaderMap().getContentLength());
-
-                System.out.println("Content-Length: " + request.getHeaderMap().getContentLength());  //Debug
 
                 request.setBody(new String(charBuffer));
             }
         }
-
         return request;
     }
 
@@ -42,16 +38,14 @@ public class RequestBuilder {
         return Method.valueOf(methodString.toUpperCase(Locale.ROOT));
     }
 
-    private void setPathname(Request request, String path){
-        Boolean hasParams = path.indexOf("?") != -1;
+    private void setPathname(Request request, String path) {
+        Boolean hasParams = path.indexOf("?") != 1;
 
-        if (hasParams) {
-            String[] pathParts =  path.split("\\?");
+        if(hasParams) {
+            String[] pathParts = path.split("\\?");
             request.setPathname(pathParts[0]);
             request.setParams(pathParts[1]);
-        }
-        else
-        {
+        } else {
             request.setPathname(path);
             request.setParams(null);
         }

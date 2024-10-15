@@ -1,5 +1,7 @@
 package mtcg.httpServer.server.services;
 
+import app.model.User;
+import com.google.gson.Gson;
 import mtcg.httpServer.http.Method;
 import mtcg.httpServer.server.Request;
 import mtcg.httpServer.server.Response;
@@ -8,16 +10,33 @@ import mtcg.httpServer.http.HttpStatus;
 import mtcg.httpServer.http.ContentType;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService implements Service {
+    private List<User> users = new ArrayList<>();
     @Override
     public Response handleRequest(Request request) {
         if (Method.POST.equals(request.getMethod())) {
-            String requestBody = request.getBody();
 
+            Gson gson = new Gson();
+            User user = gson.fromJson(request.getBody(), User.class); //Daten werden aus JSON extrahiert
 
-            System.out.println(requestBody);
+            for(User existingUser : users){
+                if(existingUser.getUsername().equals(user.getUsername())){ // Es wird ueberprueft ob der Username bereits vergeben ist
+                    return new Response(HttpStatus.BAD_REQUEST, ContentType.JSON, "Username already exists");
+                }
+            }
+
+            users.add(user);
+
+            String username = user.getUsername();//debug
+            String password = user.getPassword();//debug
+            System.out.println("Username: " + username);//debug
+            System.out.println("Password: " + password);//debug
+
             String response = "User created";
+
             return new Response(HttpStatus.CREATED, ContentType.JSON, response);
        } else {
             return new Response(HttpStatus.BAD_REQUEST, ContentType.JSON, "Method Not Allowed");

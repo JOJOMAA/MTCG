@@ -12,18 +12,17 @@ public class Request {
     private String pathname;
     private List<String> pathParts;
     private String params;
-    private HeaderMap headerMap =  new HeaderMap();
+    private HeaderMap headerMap = new HeaderMap();
     private String body;
 
-    public String getServiceRoute(){
-        if (this.pathParts == null ||
-                this.pathParts.isEmpty()) {
+    public String getServiceRoute() {
+        if(this.pathParts == null || this.pathParts.isEmpty()) {
             return null;
         }
-        return '/' + this.pathParts.get(0); //Es wird z.B.: ""/" + Users" returned
+        return '/' + this.pathParts.get(0);
     }
 
-    public String getUrlContent(){
+    public String getUrlContent(String urlContent) {
         return this.urlContent;
     }
 
@@ -31,13 +30,11 @@ public class Request {
         this.urlContent = urlContent;
         Boolean hasParams = urlContent.indexOf("?") != -1;
 
-        if (hasParams) {
-            String[] pathParts =  urlContent.split("\\?");
+        if(hasParams) {
+            String[] pathParts = urlContent.split("\\?");
             this.setPathname(pathParts[0]);
             this.setParams(pathParts[1]);
-        }
-        else
-        {
+        } else {
             this.setPathname(urlContent);
             this.setParams(null);
         }
@@ -55,22 +52,19 @@ public class Request {
         return pathname;
     }
 
-
     public void setPathname(String pathname) {
         this.pathname = pathname;
         String[] stringParts = pathname.split("/");
         this.pathParts = new ArrayList<>();
-        for (String part :stringParts)
-        {
-            if (part != null &&
-                    part.length() > 0)
-            {
+
+        for(String part :stringParts) {
+            if(part != null && part.length() > 0) {
                 this.pathParts.add(part);
             }
         }
-
     }
-    public String getParams() {
+
+    public String getParams(String params) {
         return params;
     }
 

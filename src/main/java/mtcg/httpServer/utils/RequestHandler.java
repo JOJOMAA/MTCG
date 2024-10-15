@@ -33,13 +33,14 @@ public class RequestHandler implements Runnable {
             Request request = new RequestBuilder().buildRequest(this.bufferedReader);
 
             if (request.getPathname() == null) {
+                System.out.println("Pathname is null in RequestHandler"); // Debug statement
                 response = new Response(
                         HttpStatus.BAD_REQUEST,
                         ContentType.JSON,
                         "[]"
                 );
             } else {
-                response = this.router.resolve(request.getServiceRoute()).handleRequest(request); //Es wird die handle Request Funktion in den Service Klassen verwendet
+                response = this.router.resolve(request.getServiceRoute()).handleRequest(request);
             }
             printWriter.write(response.get());
         } catch (IOException e) {
