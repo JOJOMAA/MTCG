@@ -8,7 +8,8 @@ import mtcg.httpServer.server.services.UserService;
 public class Main {
     public static void main(String[] args) {
         Router router = new Router();
-        router.addService("/users", new UserService()); // Register UserService
+        router.addService("/users", new UserService());
+
 
         Server server = new Server(10001, router);
         try {

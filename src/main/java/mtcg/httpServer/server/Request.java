@@ -20,8 +20,7 @@ public class Request {
                 this.pathParts.isEmpty()) {
             return null;
         }
-
-        return '/' + this.pathParts.get(0);
+        return '/' + this.pathParts.get(0); //Es wird z.B.: ""/" + Users" returned
     }
 
     public String getUrlContent(){

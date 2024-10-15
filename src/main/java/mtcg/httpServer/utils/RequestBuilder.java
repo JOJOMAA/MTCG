@@ -16,7 +16,7 @@ public class RequestBuilder {
         if (line != null) {
             String[] splitFirstLine = line.split(" ");
 
-            request.setMethod(getMethod(splitFirstLine[0]));
+            request.setMethod(getMethod(splitFirstLine[0])); //Methode wird Extrahiert aus Anfrage (z.B.: POST)
             setPathname(request, splitFirstLine[1]);
 
             line = bufferedReader.readLine();
@@ -28,6 +28,8 @@ public class RequestBuilder {
             if (request.getHeaderMap().getContentLength() > 0) {
                 char[] charBuffer = new char[request.getHeaderMap().getContentLength()];
                 bufferedReader.read(charBuffer, 0, request.getHeaderMap().getContentLength());
+
+                System.out.println("Content-Length: " + request.getHeaderMap().getContentLength());  //Debug
 
                 request.setBody(new String(charBuffer));
             }

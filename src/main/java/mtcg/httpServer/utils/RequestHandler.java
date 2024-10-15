@@ -39,7 +39,7 @@ public class RequestHandler implements Runnable {
                         "[]"
                 );
             } else {
-                response = this.router.resolve(request.getServiceRoute()).handleRequest(request);
+                response = this.router.resolve(request.getServiceRoute()).handleRequest(request); //Es wird die handle Request Funktion in den Service Klassen verwendet
             }
             printWriter.write(response.get());
         } catch (IOException e) {
