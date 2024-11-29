@@ -5,5 +5,4 @@ public class Card {
     private boolean isMonster; //falls Negativ -> Karte ist Spell
     private int damage;
     private String elementType;
-
 }

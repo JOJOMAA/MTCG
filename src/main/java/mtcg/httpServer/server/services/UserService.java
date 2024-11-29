@@ -15,6 +15,21 @@ import java.util.List;
 
 public class UserService implements Service {
     private List<User> users = new ArrayList<>();
+
+    public String getUserPassword(String username){
+        for(User existingUser : users) {
+            if(username == existingUser.getUsername()){
+                return existingUser.getPassword();
+            }
+        }
+        return null;
+    }
+
+    public List<User> getUsers(){
+        return users;
+    }
+
+
     @Override
     public Response handleRequest(Request request) {
         if (Method.POST.equals(request.getMethod())) {

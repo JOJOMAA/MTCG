@@ -22,7 +22,6 @@ public class Router {
 
     public Service resolve(String route)
     {
-
         return this.serviceRegistry.get(route);
     }
 }
