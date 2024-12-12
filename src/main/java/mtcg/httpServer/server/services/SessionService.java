@@ -12,6 +12,15 @@ import mtcg.httpServer.http.ContentType;
 
 import java.util.UUID;
 
+////////////////////////////////////////////
+//in der generateToken Funktion wird ein toker zurückgegeben (username + "mtcgToken")
+//in der handleRequest Funktion, wird versucht einen User einzulogen,
+//wenn der Username und Passwort korrekt sind & existieren und der User noch keinen Token hat,
+//dann wird dem User ein Token gesetzt
+////////////////////////////////////////////
+
+
+
 public class SessionService implements Service {
     private UserService userService;
 

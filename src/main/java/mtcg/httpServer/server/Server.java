@@ -9,6 +9,10 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+////////////////////////////////////////////
+//mit Server() wird der Port und Router für den Server gesetzt
+//
+////////////////////////////////////////////
 public class Server {
     private int port;
     private Router router;

@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+////////////////////////////////////////////
+//Kümmert sich um die Anfragen, an die User Daten
+//in der handleRequest funktion, wird ein neuer User angelegt,
+//falls der Username noch nicht existiert
+////////////////////////////////////////////
 public class UserService implements Service {
     private List<User> users = new ArrayList<>();
 

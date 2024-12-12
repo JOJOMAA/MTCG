@@ -6,7 +6,11 @@ import mtcg.httpServer.server.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-
+//////////////////////////////////////////////
+//Der Router wird in der Main file Instanziert
+//In der HashMap serviceRegistry, wird ein String (die route, z.B.: "/users")
+//mit einen service gespeichert
+/////////////////////////////////////////////
 public class Router {
     private Map<String, Service> serviceRegistry = new HashMap<>();
 

@@ -1,0 +1,8 @@
+Main.java: ist die Main Datei vom Server.
+           erstellt den Router, fügt die Services hinzu und startet den Server
+-------------------------------------------------------------------------------
+Router.java: Diese Klasse verwaltet die Routen und ordnet URL-Pfade den
+             entsprechenden Diensten zu. Sie fügt Dienste wie UserService
+             und SessionService hinzu und leitet Anfragen an diese weiter(resolve).
+-------------------------------------------------------------------------------
+
